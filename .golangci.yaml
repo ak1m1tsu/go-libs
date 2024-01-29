@@ -1,0 +1,60 @@
+run:
+  timeout: 10m
+  issues-exit-code: 1
+  tests: true
+  skip-dirs:
+    - bin
+    - test
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  govet:
+    check-shadowing: false
+  golint:
+    min-confidence: 0
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  gocritic:
+    enabled-checks:
+      - nilValReturn
+
+linters:
+  disable-all: true
+  enable:
+    - revive
+    - govet
+    - errcheck
+    - ineffassign
+    - typecheck
+    - goconst
+    - gosec
+    - goimports
+    - gosimple
+    - unused
+    - staticcheck
+    - gocyclo
+    - gocognit
+    - prealloc
+    - gochecknoinits
+    - wsl
+    - gocritic
+
+issues:
+  new-from-rev: ""
+  exclude-use-default: false
+  exclude-rules:
+    - path: ".*\\.*_test\\.go$"
+      linters:
+        - dupl
+        - wsl
+        - gosec
+        - prealloc
+        - gocognit
+        - gocyclo
